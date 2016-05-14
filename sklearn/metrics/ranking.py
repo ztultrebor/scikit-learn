@@ -328,7 +328,7 @@ def _binary_clf_curve(y_true, y_score, pos_label=None, sample_weight=None):
     # concatenate a value for the end of the curve.
     # We need to use isclose to avoid spurious repeated thresholds
     # stemming from floating point roundoff errors.
-    atol = min(y_score[y_true==pos_label])
+    atol = min(y_score[y_true==pos_label]) / 2.
     distinct_value_indices = np.where(np.logical_not(isclose(
         np.diff(y_score), 0, atol=atol)))[0]
     threshold_idxs = np.r_[distinct_value_indices, y_true.size - 1]
