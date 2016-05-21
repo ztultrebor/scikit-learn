@@ -57,7 +57,7 @@ from sklearn.utils import shuffle
 from sklearn.datasets import make_classification
 from sklearn.datasets import make_multilabel_classification
 
-from test_split import MockClassifier
+from sklearn.model_selection.tests.test_split import MockClassifier
 
 
 class MockImprovingEstimator(BaseEstimator):
@@ -379,8 +379,8 @@ def test_permutation_score():
 
     # test with custom scoring object
     def custom_score(y_true, y_pred):
-        return (((y_true == y_pred).sum() - (y_true != y_pred).sum())
-                / y_true.shape[0])
+        return (((y_true == y_pred).sum() - (y_true != y_pred).sum()) /
+                y_true.shape[0])
 
     scorer = make_scorer(custom_score)
     score, _, pvalue = permutation_test_score(
